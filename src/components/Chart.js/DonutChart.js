@@ -1,7 +1,6 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 
-
 const DonutChart = () => {
   return (
     <div>
@@ -11,7 +10,7 @@ const DonutChart = () => {
           datasets: [
             {
               label: 'Current Payments',
-              data: [, 19, 3],
+              data: [20, 19, 3],
               backgroundColor: [
                 'rgba(255, 99, 132)',
                 'rgba(54, 162, 235)',
