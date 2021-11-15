@@ -24,17 +24,44 @@ function NavBar(props) {
       <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="#action2">Ways to Save!</Nav.Link>
-          <Nav.Link href="Stocks">Visit Most Popular Stocks!</Nav.Link>
+          <Nav.Link href="https://mint.intuit.com/credit-cards/">Ways to Save!</Nav.Link>
+          <Nav.Link href="Stocks">View Stocks!</Nav.Link>
           <Nav.Link href="#action2">Set A Goal!</Nav.Link>
-          <NavDropdown title="Options" id="offcanvasNavbarDropdown">
-            <NavDropdown.Item href="#action3">Edit Profile</NavDropdown.Item>
-            <NavDropdown.Item href="Login">Login</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="Logout">
-              Logout
-            </NavDropdown.Item>
+          <Nav.Link href="#action3">Edit Profile</Nav.Link>
+          <NavDropdown title="Create Payments" id="offcanvasNavbarDropdown">
+          <NavDropdown.Item href="Food">Create Food Payment</NavDropdown.Item>
+          <NavDropdown.Item href="Expenses">Create Expense Payment</NavDropdown.Item>
+          <NavDropdown.Item href="Insurance">Create Insurance Payment</NavDropdown.Item>
+          <NavDropdown.Item href="Transportation">Create Transportation Payment</NavDropdown.Item>
+          <NavDropdown.Item href="Housing">Create House Payment</NavDropdown.Item>
+          <NavDropdown.Item href="Utilities">Create Utility Payment</NavDropdown.Item>
           </NavDropdown>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Nav.Link href="Logout">Logout</Nav.Link>
         </Nav>
       </Offcanvas.Body>
     </Navbar.Offcanvas>

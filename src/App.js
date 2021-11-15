@@ -5,17 +5,31 @@ import SignUp from './components/SignUp/SignUp';
 import NavBar from './components/Login/NavBar/NavBar';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
+import Expenses from './components/Expenses/Expenses'
+import Insurance from './components/Insurance/Insurance'
+import Transportation from './components/Transportation/Transportation'
+import Housing from './components/Housing/Housing'
+import Utilities from './components/Utilities/Utilities'
 import Stocks from './components/Stocks/Stocks'
+import Food from './components/Food/Food';
 import jwtDecode from 'jwt-decode';
 import {Grid} from '@material-ui/core'
 
 
 
 class App extends Component {
+
+
   constructor(props){
     super(props);
       this.state = {
         user : "",
+        food : [],
+        expenses : [],
+        insurance : [],
+        transportation : [],
+        housing : [],
+        utilities : []
       }
   }
 
@@ -39,113 +53,7 @@ class App extends Component {
     }
    }
 
-   getAllFoods = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`, newUser)
-      window.location = '/login'
-      console.log()
-    }
-    catch(err){  
-    }
-   }
-
-   createNewFood = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-   getAllExpenses = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getallexpenses/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-   createNewExpense = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addexpense/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-   getAllInsurance = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getallinsurance/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-   createNewInsurance = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addinsurance/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-   getAllTransportation = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getalltransportation/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-   createNewTransportation = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addtransportation/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-   getAllHousing = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getallhousing/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-   createNewHousing = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addhousing/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-   getAllUtilities = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/getallutilities/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-   }
-
-  createNewUtilities = async (newUser) => {
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addutilites/`, newUser)
-      window.location = '/login'
-    }
-    catch(err){  
-    }
-  }
-
-
-  userSignIn = async (userCredentials) => {
+   userSignIn = async (userCredentials) => {
     try{
       const response = await axios.post(`http://127.0.0.1:8000/api/auth/login/`, userCredentials)
       localStorage.setItem('token', response.data.access)
@@ -161,6 +69,121 @@ class App extends Component {
     window.location = '/Login'
   }
 
+   getAllFoods = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+   getAllExpenses = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+   getAllTransportation = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+   getAllInsurance = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+   getAllHousing = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+   getAllUtilities = async () => {
+    try {
+    let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
+    this.setState({
+      food : response.data
+    })} 
+    catch (error){
+  }
+ }
+
+   createNewFood = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
+   createNewExpense = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
+   createNewTransportation = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
+   createNewInsurance = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
+   createNewHousing = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
+   createNewUtility = async (food) => {
+    try{
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      this.getAllFoods()
+      window.location = '/login'
+      return response.status
+    }
+    catch(err){  
+    }
+   }
 
   render () {
     var user = this.state.user;
@@ -180,6 +203,12 @@ class App extends Component {
           <Route path="/" exact component={Home}/>
           <Route path = "/SignUp" render={props => <SignUp {...props} createNewUser={this.createNewUser}/>}/>
           <Route path="/Login" render={props => <Login {...props} userSignIn={this.userSignIn}/>}/>
+          <Route path="/Food" render={props => <Food {...props} createNewFood={this.createNewFood}/>}/>
+          <Route path="/Expenses" render={props => <Food {...props} createNewExpense={this.createNewExpense}/>}/>
+          <Route path="/Insurance" render={props => <Food {...props} createNewInsurance={this.createNewInsurance}/>}/>
+          <Route path="/Transportation" render={props => <Food {...props} createNewTransportation={this.createNewTransportation}/>}/>
+          <Route path="/Housing" render={props => <Food {...props} createNewHousing={this.createNewHousing}/>}/>
+          <Route path="/Utilities" render={props => <Food {...props} createNewUtility={this.createNewUtility}/>}/>
           <Route path="/Stocks" component={Stocks}/>
         </Switch>
       </div> 

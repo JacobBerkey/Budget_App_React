@@ -1,19 +1,71 @@
-import axios from "axios";
+import React from 'react';
+import Plot from 'react-plotly.js';
 
-function Stocks(){
-var options = {
-  method: 'GET',
-  url: 'https://cnbc.p.rapidapi.com/get-meta-data',
-  headers: {
-    'x-rapidapi-host': 'cnbc.p.rapidapi.com',
-    'x-rapidapi-key': 'aff3610a80mshefcb4ac924df605p1eaa91jsnf70a351577e1'
+class Stocks extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stockChartXValues: [],
+      stockChartYValues: []
+    }
   }
-};
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+  componentDidMount() {
+    this.fetchStock();
+  }
+
+  fetchStock() {
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    const API_KEY = 'HGJWFG4N8AQ66ICD';
+    let StockSymbol = 'FB';
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+    fetch(API_Call)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          console.log(data);
+
+          for (var key in data['Time Series (Daily)']) {
+            stockChartXValuesFunction.push(key);
+            stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
+          }
+
+          // console.log(stockChartXValuesFunction);
+          pointerToThis.setState({
+            stockChartXValues: stockChartXValuesFunction,
+            stockChartYValues: stockChartYValuesFunction
+          });
+        }
+      )
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Stock Market</h1>
+        <Plot
+          data={[
+            {
+              x: this.state.stockChartXValues,
+              y: this.state.stockChartYValues,
+              type: 'scatter',
+              mode: 'lines+markers',
+              marker: {color: 'red'},
+            }
+          ]}
+          layout={{width: 1080, height: 720, title: 'Stock Plot'}}
+        />
+      </div>
+    )
+  }
 }
-export default Stocks
+
+export default Stocks;

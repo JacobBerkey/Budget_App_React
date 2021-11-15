@@ -28,6 +28,7 @@ export default function Login(props){
         return (
             <div>
                 <form onSubmit={handleSubmit}>
+                    <br />
                     <h2> Sign In </h2>
                     <Form.Group className="mb-3" controlId="formGroupEmail">
                         <Form.Control type="text" placeholder="Username" onChange={handleNameChange}/>
@@ -35,7 +36,7 @@ export default function Login(props){
                     <Form.Group className="mb-3" controlId="formGroupDescription">
                         <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange}/>
                     </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-success">Sign In</Button>
+                    <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
                     <Grid style={{marginLeft: "850px"}}></Grid>
                 </form>
             </div>

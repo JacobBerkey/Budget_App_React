@@ -6,15 +6,18 @@ const DonutChart = () => {
     <div>
       <Doughnut
         data={{
-          labels: ['Red', 'Blue', 'Yellow'],
+          labels: ['Food', 'Personal Expenses', 'Insurance', 'Transportation', 'Housing', 'Utilities'],
           datasets: [
             {
               label: 'Current Payments',
-              data: [20, 19, 3],
+              data: [254, 46, 160, 364, 1280, 0],
               backgroundColor: [
                 'rgba(255, 99, 132)',
                 'rgba(54, 162, 235)',
                 'rgba(255, 205, 86)',
+                'rgb(116, 227, 73)',
+                'rgb(226, 48, 48)',
+                'rgb(13, 81, 124)',
               ],
               borderColor: [
                 'rgba(255, 99, 132, 1)',

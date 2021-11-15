@@ -85,7 +85,7 @@ const SignUp = (props) => {
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridPrefix">
-      <Form.Label>Middle Name</Form.Label>
+      <Form.Label>Prefix</Form.Label>
       <Form.Control type="Prefix" placeholder="Enter Prefix" onChange={handlePrefixChange}/>
     </Form.Group>
   </Row>
