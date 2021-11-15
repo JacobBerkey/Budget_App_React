@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import {Form} from "react-bootstrap"
 import {Button, Grid} from '@material-ui/core';
+import {Col} from 'react-bootstrap'
+import {Row} from 'react-bootstrap'
+
+
+
 
 const SignUp = (props) => {
 
@@ -59,47 +64,56 @@ const SignUp = (props) => {
     };
 
     return (
-        <div>
-        <hgroup>
-        </hgroup>
-        <form onSubmit={handleSubmit}>
+      <div>
                     <h2> Register </h2>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="First Name" onChange={handleFirstNameChange}/>
-                    </Form.Group>
+                    <br />
+                    <Form onSubmit={handleSubmit}>
+  <Row className="mb-3">
+    <Form.Group as={Col} controlId="formGridName">
+      <Form.Label>First Name</Form.Label>
+      <Form.Control type="name" placeholder="Enter First Name" onChange={handleFirstNameChange}/>
+    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="Last Name" onChange={handleLastNameChange}/>
-                    </Form.Group>
+    <Form.Group as={Col} controlId="formGridName">
+      <Form.Label>Last Name</Form.Label>
+      <Form.Control type="name" placeholder="Enter Last Name" onChange={handleLastNameChange}/>
+    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="Middle Name" onChange={handleMiddleNameChange}/>
-                    </Form.Group>
+    <Form.Group as={Col} controlId="formGridName">
+      <Form.Label>Middle Name</Form.Label>
+      <Form.Control type="name" placeholder="Enter Middle Name" onChange={handleMiddleNameChange}/>
+    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="Prefix" onChange={handlePrefixChange}/>
-                    </Form.Group>
+    <Form.Group as={Col} controlId="formGridPrefix">
+      <Form.Label>Middle Name</Form.Label>
+      <Form.Control type="Prefix" placeholder="Enter Prefix" onChange={handlePrefixChange}/>
+    </Form.Group>
+  </Row>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="Username" onChange={handleUsernameChange}/>
-                    </Form.Group>
+  <Form.Group className="mb-3" controlId="formGridUserName">
+    <Form.Label>Username</Form.Label>
+    <Form.Control placeholder="Enter UserName" onChange={handleUsernameChange}/>
+  </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="email" placeholder="Email" onChange={handleEmailChange}/>
-                    </Form.Group>
+  <Form.Group className="mb-3" controlId="formGridEmail">
+    <Form.Label>Email</Form.Label>
+    <Form.Control placeholder="Enter Email" onChange={handleEmailChange}/>
+  </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="integer" placeholder="Monthly Income" onChange={handleMonthlyIncomeChange}/>
-                    </Form.Group>
+  <Row className="mb-3">
+    <Form.Group as={Col} controlId="formGridIncome">
+      <Form.Label>Monthly Income</Form.Label>
+      <Form.Control placeholder="Enter Monthly Income" onChange={handleMonthlyIncomeChange}/>
+    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGroupDescription">
-                        <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange}/>
-                    </Form.Group>
-
-                    <Button type="submit" variant="contained" class="btn btn-success">Sign In</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-        </div>
+    <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control placeholder="Enter Password" onChange={handlePasswordChange}/>
+    </Form.Group>
+  </Row>
+  <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
+  </Form>
+  </div>
     )
 }
 export default SignUp
