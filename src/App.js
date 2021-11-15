@@ -5,6 +5,7 @@ import SignUp from './components/SignUp/SignUp';
 import NavBar from './components/Login/NavBar/NavBar';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
+import Stocks from './components/Stocks/Stocks'
 import jwtDecode from 'jwt-decode';
 import {Grid} from '@material-ui/core'
 
@@ -179,6 +180,7 @@ class App extends Component {
           <Route path="/" exact component={Home}/>
           <Route path = "/SignUp" render={props => <SignUp {...props} createNewUser={this.createNewUser}/>}/>
           <Route path="/Login" render={props => <Login {...props} userSignIn={this.userSignIn}/>}/>
+          <Route path="/Stocks" component={Stocks}/>
         </Switch>
       </div> 
       </Grid> 
