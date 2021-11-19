@@ -1,119 +1,210 @@
-import React, { useState } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
-import {Col} from 'react-bootstrap'
-import {Row} from 'react-bootstrap'
+import React, {useState} from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
 
-const SignUp = (props) => {
+export default function SignUp(props) {
 
   const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [username, setUsername] = useState();
   const [middleName, setMiddleName] = useState();
+  const [lastName, setLastName] = useState();
   const [prefix, setPrefix] = useState();
+  const [email, setEmail] = useState();
   const [monthlyIncome, setMonthlyIncome] = useState();
+  const [password, setPassword] = useState();
 
-  const handleFirstNameChange = (event) => {
+
+
+  const handleFirstNameChange = (event) =>{
     setFirstName(event.target.value);
+    console.log("firstName", firstName)
   }
 
-  const handleLastNameChange = (event) => {
+  const handleMiddleNameChange = (event) =>{
+    setMiddleName(event.target.value);
+    console.log("middleName", middleName)
+  }
+
+  const handleLastNameChange = (event) =>{
     setLastName(event.target.value);
+    console.log("lastName", lastName)
   }
 
-  const handleEmailChange = (event) => {
+  const handlePrefixChange = (event) =>{
+    setPrefix(event.target.value);
+    console.log("prefix", prefix)
+  }
+    
+  const handleEmailChange = (event) =>{
     setEmail(event.target.value);
+    console.log("email", email)
   }
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleMonthlyIncomeChange = (event) =>{
+    setMonthlyIncome(event.target.value);
+    console.log("monthlyIncome", monthlyIncome)
   }
-
-  const handlePasswordChange = (event) => {
+    
+  const handlePasswordChange = (event) =>{
     setPassword(event.target.value)
-  }
-  const handlePrefixChange = (event) => {
-    setPrefix(event.target.value)
-  }
-  const handleMiddleNameChange = (event) => {
-    setMiddleName(event.target.value)
-  }
-  const handleMonthlyIncomeChange = (event) => {
-    setMonthlyIncome(event.target.value)
+    console.log("password", password)
   }
 
 
-    const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newUser = {
-        first_name: firstName,
-        last_name: lastName,
-        middle_name: middleName,
-        prefix: prefix,
-        username: username,
-        email: email,
-        monthly_income: monthlyIncome,
-        password: password,
-    }
+        first_name : firstName,
+        middle_name : middleName,
+        last_name : lastName,
+        prefix : prefix,
+        username : email,
+        email : email,
+        monthly_income : monthlyIncome,
+        password : password,
+        
+    } 
+    console.log("handleSubmit:", newUser)
+    console.log("handleSubmit:", props)
     props.createNewUser(newUser);
-    };
+  };
 
-    return (
-      <div>
-                    <h2> Register </h2>
-                    <br />
-                    <Form onSubmit={handleSubmit}>
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridName">
-      <Form.Label>First Name</Form.Label>
-      <Form.Control type="name" placeholder="Enter First Name" onChange={handleFirstNameChange}/>
-    </Form.Group>
+const theme = createTheme();
 
-    <Form.Group as={Col} controlId="formGridName">
-      <Form.Label>Last Name</Form.Label>
-      <Form.Control type="name" placeholder="Enter Last Name" onChange={handleLastNameChange}/>
-    </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridName">
-      <Form.Label>Middle Name</Form.Label>
-      <Form.Control type="name" placeholder="Enter Middle Name" onChange={handleMiddleNameChange}/>
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridPrefix">
-      <Form.Label>Prefix</Form.Label>
-      <Form.Control type="Prefix" placeholder="Enter Prefix" onChange={handlePrefixChange}/>
-    </Form.Group>
-  </Row>
-
-  <Form.Group className="mb-3" controlId="formGridUserName">
-    <Form.Label>Username</Form.Label>
-    <Form.Control placeholder="Enter UserName" onChange={handleUsernameChange}/>
-  </Form.Group>
-
-  <Form.Group className="mb-3" controlId="formGridEmail">
-    <Form.Label>Email</Form.Label>
-    <Form.Control placeholder="Enter Email" onChange={handleEmailChange}/>
-  </Form.Group>
-
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridIncome">
-      <Form.Label>Monthly Income</Form.Label>
-      <Form.Control placeholder="Enter Monthly Income" onChange={handleMonthlyIncomeChange}/>
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control placeholder="Enter Password" onChange={handlePasswordChange}/>
-    </Form.Group>
-  </Row>
-  <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
-  </Form>
-  </div>
-    )
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit}   sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  onChange={handleFirstNameChange}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="middleName"
+                  required
+                  fullWidth
+                  id="middleName"
+                  label="Middle Name"
+                  onChange={handleMiddleNameChange}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="LastName"
+                  name="lastName"
+                  onChange={handleLastNameChange}
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="prefix"
+                  label="prefix"
+                  name="prefix"
+                  onChange={handlePrefixChange}
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={handleEmailChange}
+                  
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="monthlyIncome"
+                  required
+                  fullWidth
+                  id="monthlyIncome"
+                  label="Monthly Income"
+                  onChange={handleMonthlyIncomeChange}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={handlePasswordChange}
+                  
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href='/Login' variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }
-export default SignUp

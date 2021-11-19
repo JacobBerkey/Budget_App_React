@@ -51,9 +51,9 @@ class App extends Component {
     }
     catch(err){  
     }
-   }
+  }
 
-   userSignIn = async (userCredentials) => {
+  userSignIn = async (userCredentials) => {
     try{
       const response = await axios.post(`http://127.0.0.1:8000/api/auth/login/`, userCredentials)
       localStorage.setItem('token', response.data.access)
@@ -69,7 +69,7 @@ class App extends Component {
     window.location = '/Login'
   }
 
-   getAllFoods = async () => {
+  getAllFoods = async () => {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
@@ -82,7 +82,7 @@ class App extends Component {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
-      food : response.data
+      expenses : response.data
     })} 
     catch (error){
   }
@@ -91,7 +91,7 @@ class App extends Component {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
-      food : response.data
+      transportation : response.data
     })} 
     catch (error){
   }
@@ -100,7 +100,7 @@ class App extends Component {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
-      food : response.data
+      insurance : response.data
     })} 
     catch (error){
   }
@@ -109,7 +109,7 @@ class App extends Component {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
-      food : response.data
+      housing : response.data
     })} 
     catch (error){
   }
@@ -118,7 +118,7 @@ class App extends Component {
     try {
     let response = await axios.get(`http://127.0.0.1:8000/api/budgetapp/getallfoods/`)
     this.setState({
-      food : response.data
+      utilities : response.data
     })} 
     catch (error){
   }
@@ -134,9 +134,9 @@ class App extends Component {
     catch(err){  
     }
    }
-   createNewExpense = async (food) => {
+   createNewExpense = async (expenses) => {
     try{
-      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, expenses)
       this.getAllFoods()
       window.location = '/login'
       return response.status
@@ -144,9 +144,9 @@ class App extends Component {
     catch(err){  
     }
    }
-   createNewTransportation = async (food) => {
+   createNewTransportation = async (transportation) => {
     try{
-      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, transportation)
       this.getAllFoods()
       window.location = '/login'
       return response.status
@@ -154,9 +154,9 @@ class App extends Component {
     catch(err){  
     }
    }
-   createNewInsurance = async (food) => {
+   createNewInsurance = async (insurance) => {
     try{
-      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, insurance)
       this.getAllFoods()
       window.location = '/login'
       return response.status
@@ -164,9 +164,9 @@ class App extends Component {
     catch(err){  
     }
    }
-   createNewHousing = async (food) => {
+   createNewHousing = async (housing) => {
     try{
-      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, housing)
       this.getAllFoods()
       window.location = '/login'
       return response.status
@@ -174,9 +174,9 @@ class App extends Component {
     catch(err){  
     }
    }
-   createNewUtility = async (food) => {
+   createNewUtility = async (utilities) => {
     try{
-      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, food)
+      let response = await axios.post(`http://127.0.0.1:8000/api/budgetapp/addfood/`, utilities)
       this.getAllFoods()
       window.location = '/login'
       return response.status
@@ -187,33 +187,28 @@ class App extends Component {
 
   render () {
     var user = this.state.user;
-    return(
+    return (
       <Grid>
-        <NavBar user={user} logOutUser={this.logOutUser}/>
+        <NavBar user={user} logOutUser={this.logOutUser} />
         <div className="App">
-        <Switch>
-          <Route path="/Home" exact render={props => {
-          if(!user){
-            return <Redirect to="/Login" />
-          }
-        else{
-          return <Home {...props} user={user} />
-        }}
-      }/>
-          <Route path="/" exact component={Home}/>
-          <Route path = "/SignUp" render={props => <SignUp {...props} createNewUser={this.createNewUser}/>}/>
-          <Route path="/Login" render={props => <Login {...props} userSignIn={this.userSignIn}/>}/>
-          <Route path="/Food" render={props => <Food {...props} createNewFood={this.createNewFood}/>}/>
-          <Route path="/Expenses" render={props => <Food {...props} createNewExpense={this.createNewExpense}/>}/>
-          <Route path="/Insurance" render={props => <Food {...props} createNewInsurance={this.createNewInsurance}/>}/>
-          <Route path="/Transportation" render={props => <Food {...props} createNewTransportation={this.createNewTransportation}/>}/>
-          <Route path="/Housing" render={props => <Food {...props} createNewHousing={this.createNewHousing}/>}/>
-          <Route path="/Utilities" render={props => <Food {...props} createNewUtility={this.createNewUtility}/>}/>
-          <Route path="/Stocks" component={Stocks}/>
-        </Switch>
-      </div> 
-      </Grid> 
-    )}
+          <Switch>
+            <Route path="/Home" exact render={props => {
+              if (!user) {
+                return <Redirect to="/Login" />
+              }
+              else {
+                return <Home {...props} user={user} />
+              }
+            }
+            } />
+            <Route path="/" exact component={Home}/>
+            <Route path="/SignUp" render={props => <SignUp {...props} createNewUser={this.createNewUser} />} />
+            <Route path="/Login" render={props => <Login {...props} userSignIn={this.userSignIn} />} />
+          </Switch>
+        </div>
+      </Grid>
+    )
+  }
 }
 
-export default App;
+export default App

@@ -1,44 +1,111 @@
-import React, { useState } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
+import React, {useState} from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+export default function Login(props) {
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
 
 
-export default function Login(props){
-
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-
-    const handleNameChange = (event) => {
-        setUsername(event.target.value)
+    const handleUserNameChange = (event) =>{
+        setUsername(event.target.value);
+        console.log("handleUserName: ", username )
     }
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
+    const handlePasswordChange =(event) =>{
+        setPassword(event.target.value);
+        console.log("handlePasswordChange :", password)
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const userCredentials = {
-            username : username,
-            password : password,
-        }
-        props.userSignIn(userCredentials);
+    event.preventDefault();
+    const userCredentials = {
+        username : username,
+        password : password
     }
+    console.log("handleSubmit :", userCredentials, props)
+    props.userSignIn(userCredentials)
+  };
 
-        return (
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <br />
-                    <h2> Sign In </h2>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Control type="text" placeholder="Username" onChange={handleNameChange}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroupDescription">
-                        <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange}/>
-                    </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-            </div>
-        )
-    }
+
+
+  const theme = createTheme();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="username"
+              name="username"
+              autoComplete="username"
+              onChange={handleUserNameChange}
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={handlePasswordChange}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/SignUp" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}
