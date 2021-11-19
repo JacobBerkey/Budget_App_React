@@ -4,7 +4,7 @@ import './Home.css'
 class Home extends Component{
   render(){
     return(
-      <div>
+      <div className="Home">
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
 
 <div class="content">

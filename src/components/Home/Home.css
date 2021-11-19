@@ -1,8 +1,8 @@
-.App {
+.Home {
 	width: 100%;
 	height: 100%;
-	position: fixed;
-	background-color: white;
+	position:fixed;
+	background-color: rgba(0, 128, 202, 0.568);
   }
   
   .content {
@@ -15,7 +15,7 @@
 	font-family: "Lato", sans-serif;
 	font-size: 35px;
 	line-height: 40px;
-	color:black;
+	color:rgb(255, 255, 255);
   }
   .content__container {
 	font-weight: 600;
@@ -35,7 +35,7 @@
   .content__container:after, .content__container:before {
 	position: absolute;
 	top: 0;
-	color: black;
+	color: rgb(255, 255, 255);
 	font-size: 42px;
 	line-height: 40px;
 	-webkit-animation-name: opacity;

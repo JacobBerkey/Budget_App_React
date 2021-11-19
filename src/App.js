@@ -183,7 +183,7 @@ class App extends Component {
     }
     catch(err){  
     }
-   }
+  }
 
   render () {
     var user = this.state.user;

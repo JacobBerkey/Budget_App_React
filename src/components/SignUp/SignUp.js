@@ -143,7 +143,7 @@ const theme = createTheme();
                   required
                   fullWidth
                   id="prefix"
-                  label="prefix"
+                  label="Prefix"
                   name="prefix"
                   onChange={handlePrefixChange}
                   autoComplete="family-name"
