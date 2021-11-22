@@ -1,55 +1,89 @@
-import React, { Component } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap"
+import { Button, Grid } from '@material-ui/core';
 
 
-class Transportation extends Component{
+
+class CreateNewTransportation extends Component {
     constructor(props) {
         super(props);
 
-        this.state={                       
-            auto_payment : "",
-            fuel : "",
-            public_transportation : "",
-            auto_maintenance : "",
-        }
+        this.state = {
+            user: "",
+            auto_payment: [],
+            fuel: [],
+            public_transportation: [],
+            auto_maintenance: [],
+            transportation_date: [],
+        };
     }
 
-    handleRestaurantChange = (event) => {
+    handleAutoPaymentChange = (event) => {
         this.setState({
-            restaurant: event.target.value
-        })
+            auto_payment: event.target.value,
+        });
     }
 
-    handleGroceriesChange = (event) => {
+    handleFuelChange = (event) => {
         this.setState({
-            groceries: event.target.value
-        })
+            fuel: event.target.value,
+        });
+    }
+
+    handlePublicTransportationChange = (event) => {
+        this.setState({
+            public_transportation: event.target.value,
+        });
+    }
+
+    handleAutoMaintenanceChange = (event) => {
+        this.setState({
+            auto_maintenance: event.target.value,
+        });
+    }
+
+    handleTransportationDateChange = (event) => {
+        this.setState({
+            transportation_date: event.target.value,
+        });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const newFood = {
-            restaurant : this.state.restaurant,
-            groceries : this.state.groceries
+        const newTransportation = {
+            auto_payment: parseInt(this.state.auto_payment),
+            fuel: parseInt(this.state.fuel),
+            public_transportation: parseInt(this.state.public_transportation),
+            auto_maintenance: parseInt(this.state.auto_maintenance),
+            transportation_date: Date(this.state.transportation_date),
         }
-        this.props.createNewFood(newFood);
-    }
-    render(){
+        console.log('Create Submit', this.props, newTransportation)
+        this.props.CreateNewTransportation(newTransportation);
+    };
+
+    render() {
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <br />
-                    <h2> Create Food Payment </h2>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Restaurant" onChange={this.handleRestaurantChange} value={this.state.restaurant}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Groceries" onChange={this.handleGroceriesChange} value={this.state.groceries}/>
-                    </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-        )
+            <form onSubmit={this.handleSubmit}>
+                <h2> Register A New Payment </h2>
+                <Form.Group className="mb-3" controlId="formGroupAutoPayment">
+                    <Form.Control type="text" placeholder="Auto Payment" onChange={this.handleAutoPaymentChange} value={this.state.auto_payment} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupFuel">
+                    <Form.Control type="number" placeholder="Fuel Payment" onChange={this.handleFuelChange} value={this.state.fuel} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPublicTransportation">
+                    <Form.Control type="number" placeholder="Public Transportation Payment" onChange={this.handlePublicTransportationChange} value={this.state.public_transportation} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupAutoMaintenance">
+                    <Form.Control type="number" placeholder="Auto-Maintenance Payment" onChange={this.handleAutoMaintenanceChange} value={this.state.auto_maintenance} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupAutoMaintenance">
+                    <Form.Control type="date" placeholder="Date" onChange={this.handleTransportationDateChange} value={this.state.transportation_date} />
+                </Form.Group>
+                <Button type="submit" variant="contained" class="btn btn-primary">Create Payment</Button>
+            </form>
+        );
     }
 }
-export default Transportation
+
+export default CreateNewTransportation;

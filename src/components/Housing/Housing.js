@@ -1,56 +1,101 @@
-import React, { Component } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap"
+import { Button, Grid } from '@material-ui/core';
 
 
-class Food extends Component{
+
+class CreateNewHousing extends Component {
     constructor(props) {
         super(props);
 
-        this.state={                       
-            rent : "",
-            mortgage : "",
-            property_tax : "",
-            hoa : "",
-            maintenance : "",
-        }
+        this.state = {
+            user: "",
+            rent: [],
+            mortgage: [],
+            property_tax: [],
+            hoa: [],
+            maintenance: [],
+            housing_date: [],
+        };
     }
 
-    handleRestaurantChange = (event) => {
+    handleRentChange = (event) => {
         this.setState({
-            restaurant: event.target.value
-        })
+            rent: event.target.value,
+        });
     }
 
-    handleGroceriesChange = (event) => {
+    handleMortgageChange = (event) => {
         this.setState({
-            groceries: event.target.value
-        })
+            mortgage: event.target.value,
+        });
     }
+
+    handlePropertyTaxChange = (event) => {
+        this.setState({
+            property_tax: event.target.value,
+        });
+    }
+
+    handleHOAChange = (event) => {
+        this.setState({
+            hoa: event.target.value,
+        });
+    }
+
+    handleMaintenanceChange = (event) => {
+        this.setState({
+            maintenance: event.target.value,
+        });
+    }
+
+    handleHousingDateChange = (event) => {
+        this.setState({
+            housing_date: event.target.value,
+        });
+    }
+
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const newFood = {
-            restaurant : this.state.restaurant,
-            groceries : this.state.groceries
+        const newHousing = {
+            rent: parseInt(this.state.rent),
+            mortgage: parseInt(this.state.mortgage),
+            property_tax: parseInt(this.state.property_tax),
+            hoa: parseInt(this.state.hoa),
+            maintenance: parseInt(this.state.maintenance),
+            housing_date: Date(this.state.housing_date),
         }
-        this.props.createNewFood(newFood);
-    }
-    render(){
+        console.log('Create Submit', this.props, newHousing)
+        this.props.createNewHousing(newHousing);
+    };
+
+    render() {
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <br />
-                    <h2> Create Food Payment </h2>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Restaurant" onChange={this.handleRestaurantChange} value={this.state.restaurant}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Groceries" onChange={this.handleGroceriesChange} value={this.state.groceries}/>
-                    </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-        )
+            <form onSubmit={this.handleSubmit}>
+                <h2> Register A New Payment </h2>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="text" placeholder="Rent Payment" onChange={this.handleRentChange} value={this.state.rent} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="number" placeholder="Mortgage Payment" onChange={this.handleMortgageChange} value={this.state.mortgage} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="number" placeholder="Property Tax Payment" onChange={this.handlePropertyTaxChange} value={this.state.property_tax} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="number" placeholder="HOA Payment" onChange={this.handleHOAChange} value={this.state.hoa} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="number" placeholder="Maintenance Payment" onChange={this.handleMaintenanceChange} value={this.state.maintenance} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupHousing">
+                    <Form.Control type="date" placeholder="Date" onChange={this.handleHousingDateChange} value={this.state.housing_date} />
+                </Form.Group>
+                <Button type="submit" variant="contained" class="btn btn-primary">Create Payment</Button>
+            </form>
+        );
     }
 }
-export default Food
+
+export default CreateNewHousing;

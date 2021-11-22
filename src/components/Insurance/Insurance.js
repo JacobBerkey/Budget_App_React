@@ -1,54 +1,79 @@
-import React, { Component } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap"
+import { Button, Grid } from '@material-ui/core';
 
 
-class Insurance extends Component{
+
+class CreateNewInsurance extends Component {
     constructor(props) {
         super(props);
 
-        this.state={                       
-            home_insurance : "",
-            auto_insurance : "",
-            life_insurance : ""
-        }
+        this.state = {
+            user: "",
+            home_insurance: [],
+            auto_insurance: [],
+            life_insurance: [],
+            insurance_date: [],
+        };
     }
 
-    handleRestaurantChange = (event) => {
+    handleHomeInsuranceChange = (event) => {
         this.setState({
-            restaurant: event.target.value
-        })
+            home_insurance: event.target.value,
+        });
     }
 
-    handleGroceriesChange = (event) => {
+    handleAutoInsuranceChange = (event) => {
         this.setState({
-            groceries: event.target.value
-        })
+            auto_insurance: event.target.value,
+        });
     }
+
+    handleLifeInsuranceChange = (event) => {
+        this.setState({
+            life_insurance: event.target.value,
+        });
+    }
+
+    handleInsuranceDateChange = (event) => {
+        this.setState({
+            insurance_date: event.target.value,
+        });
+    }
+
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const newFood = {
-            restaurant : this.state.restaurant,
-            groceries : this.state.groceries
+        const newInsurance = {
+            home_insurance: parseInt(this.state.home_insurance),
+            auto_insurance: parseInt(this.state.auto_insurance),
+            life_insurance: parseInt(this.state.life_insurance),
+            insurance_date: Date(this.state.insurance_date)
         }
-        this.props.createNewFood(newFood);
-    }
-    render(){
+        console.log('Create Submit', this.props, newInsurance)
+        this.props.createNewInsurance(newInsurance);
+    };
+
+    render() {
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <br />
-                    <h2> Create Food Payment </h2>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Restaurant" onChange={this.handleRestaurantChange} value={this.state.restaurant}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Groceries" onChange={this.handleGroceriesChange} value={this.state.groceries}/>
-                    </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-primary">Sign In</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-        )
+            <form onSubmit={this.handleSubmit}>
+                <h2> Register A New Payment </h2>
+                <Form.Group className="mb-3" controlId="formGroupInsurance">
+                    <Form.Control type="text" placeholder="Home Insurance Payment" onChange={this.handleHomeInsuranceChange} value={this.state.home_insurance} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupInsurance">
+                    <Form.Control type="number" placeholder="Auto Insurance Payment" onChange={this.handleAutoInsuranceChange} value={this.state.auto_insurance} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupInsurance">
+                    <Form.Control type="number" placeholder="Life Insurance Payment" onChange={this.handleLifeInsuranceChange} value={this.state.life_insurance} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupInsurance">
+                    <Form.Control type="date" placeholder="Date" onChange={this.handleInsuranceDateChange} value={this.state.insurance_date} />
+                </Form.Group>
+                <Button type="submit" variant="contained" class="btn btn-primary">Create Payment</Button>
+            </form>
+        );
     }
 }
-export default Insurance
+
+export default CreateNewInsurance;

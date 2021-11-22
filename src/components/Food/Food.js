@@ -1,53 +1,66 @@
-import React, { Component } from 'react'
-import {Form} from "react-bootstrap"
-import {Button, Grid} from '@material-ui/core';
+import React, { Component } from "react";
+import { Form } from "react-bootstrap"
+import { Button, Grid } from '@material-ui/core';
+import { Redirect } from "react-router";
 
 
-class Food extends Component{
+
+class CreateNewFood extends Component {
     constructor(props) {
         super(props);
 
-        this.state={                       
-            restaurant : "",
-            groceries : ""
-        }
-    }
-
-    handleRestaurantChange = (event) => {
-        this.setState({
-            restaurant: event.target.value
-        })
+        this.state = {
+            user: "",
+            groceries: [],
+            restaurant: [],
+            food_date: [],
+        };
     }
 
     handleGroceriesChange = (event) => {
         this.setState({
-            groceries: event.target.value
-        })
+            groceries: event.target.value,
+        });
+    }
+    handleRestaurantChange = (event) => {
+        this.setState({
+            restaurant: event.target.value,
+        });
+    }
+    handleFoodDateChange = (event) => {
+        this.setState({
+            food_date: event.target.value,
+        });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         const newFood = {
-            restaurant : this.state.restaurant,
-            groceries : this.state.groceries
+            groceries: parseInt(this.state.groceries),
+            restaurant: parseInt(this.state.restaurant),
+            food_date: Date(this.state.food_date),
         }
+        console.log('Create Submit', this.props, newFood)
         this.props.createNewFood(newFood);
-    }
-    render(){
+    };
+
+    render() {
         return (
-                <form onSubmit={this.handleSubmit}>
-                    <br />
-                    <h2> Create Food Payment </h2>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Restaurant" onChange={this.handleRestaurantChange} value={this.state.restaurant}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroup">
-                        <Form.Control type="text" placeholder="Groceries" onChange={this.handleGroceriesChange} value={this.state.groceries}/>
-                    </Form.Group>
-                    <Button type="submit" variant="contained" class="btn btn-primary">Submit</Button>
-                    <Grid style={{marginLeft: "850px"}}></Grid>
-                </form>
-        )
+            <form onSubmit={this.handleSubmit}>
+                <h2> Register A New Payment </h2>
+                <Form.Group className="mb-3" controlId="formGroupGroceries">
+                    <Form.Control type="text" placeholder="Grocery Payment" onChange={this.handleGroceriesChange} value={this.state.groceries} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupRestaurant">
+                    <Form.Control type="number" placeholder="Restaurant Payment" onChange={this.handleRestaurantChange} value={this.state.restaurant} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupDate">
+                    <Form.Control type="date" placeholder="Date" onChange={this.handleFoodDateChange} value={this.state.food_date} />
+                </Form.Group>
+                <Button type="submit" variant="contained" class="btn btn-primary">Create Payment</Button>
+            </form>
+        );
     }
 }
-export default Food
+
+export default CreateNewFood;

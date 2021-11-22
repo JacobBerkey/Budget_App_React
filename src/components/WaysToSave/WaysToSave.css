@@ -1,0 +1,22 @@
+.WaysToSave{
+    background-color: rgba(0, 128, 202, 0.568);
+    text-align: center;
+}
+
+p1{
+    text-align: center;
+    color:rgba(255, 255, 255, 0.952);
+    font-size:x-large;
+    font-weight: 700;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+p2{
+    text-align: center;
+    color:rgb(255, 255, 255, 0.952);
+    font-size:large;
+}
+.header{
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:rgb(255, 255, 255, 0.952);
+}
