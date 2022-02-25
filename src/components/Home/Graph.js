@@ -132,7 +132,7 @@ class Graph extends Component {
           datasets: [
             {
               label: '# of votes',
-              data: [127, 488.77, 350, 345, 2817, 410],
+              data: [this.getFood, this.getExpenses, this.getInsurance, this.getHousing],
               backgroundColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',

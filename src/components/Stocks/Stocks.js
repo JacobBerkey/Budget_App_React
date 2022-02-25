@@ -1,3 +1,4 @@
+import { bgcolor } from '@mui/system';
 import React from 'react';
 import Plot from 'react-plotly.js';
 
@@ -29,9 +30,9 @@ class Stocks extends React.Component {
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
-    const API_KEY = 'HGJWFG4N8AQ66ICD';
+    const API_KEY = 'OWEMWC9CKVTB6ICU';
     let StockSymbol = ['FB'];
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 
@@ -61,9 +62,9 @@ class Stocks extends React.Component {
   fetchStockTwo() {
     const pointerToThisTwo = this;
     console.log(pointerToThisTwo);
-    const API_KEY_Two = 'HGJWFG4N8AQ66ICD';
+    const API_KEY_Two = 'OWEMWC9CKVTB6ICU';
     let StockSymbolTwo = ['TSLA'];
-    let API_Call_Two = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbolTwo}&outputsize=compact&apikey=${API_KEY_Two}`;
+    let API_Call_Two = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${StockSymbolTwo}&outputsize=compact&apikey=${API_KEY_Two}`;
     let stockChartXValuesFunctionTwo = [];
     let stockChartYValuesFunctionTwo = [];
 
@@ -92,9 +93,9 @@ class Stocks extends React.Component {
   fetchStockThree() {
     const pointerToThisThree = this;
     console.log(pointerToThisThree);
-    const API_KEY_Three = 'HGJWFG4N8AQ66ICD';
+    const API_KEY_Three = 'OWEMWC9CKVTB6ICU';
     let StockSymbolThree = ['CSCO'];
-    let API_Call_Three = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbolThree}&outputsize=compact&apikey=${API_KEY_Three}`;
+    let API_Call_Three = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${StockSymbolThree}&outputsize=compact&apikey=${API_KEY_Three}`;
     let stockChartXValuesFunctionThree = [];
     let stockChartYValuesFunctionThree = [];
 
@@ -123,9 +124,9 @@ class Stocks extends React.Component {
   fetchStockFour() {
     const pointerToThisFour = this;
     console.log(pointerToThisFour);
-    const API_KEY_Four = 'HGJWFG4N8AQ66ICD';
+    const API_KEY_Four = 'OWEMWC9CKVTB6ICU';
     let StockSymbolFour = ['AAPL'];
-    let API_Call_Four = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbolFour}&outputsize=compact&apikey=${API_KEY_Four}`;
+    let API_Call_Four = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${StockSymbolFour}&outputsize=compact&apikey=${API_KEY_Four}`;
     let stockChartXValuesFunctionFour = [];
     let stockChartYValuesFunctionFour = [];
 
@@ -154,9 +155,9 @@ class Stocks extends React.Component {
   fetchStockFive() {
     const pointerToThisFive = this;
     console.log(pointerToThisFive);
-    const API_KEY_Five = 'HGJWFG4N8AQ66ICD';
+    const API_KEY_Five = 'OWEMWC9CKVTB6ICU';
     let StockSymbolFive = ['INTC'];
-    let API_Call_Five = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbolFive}&outputsize=compact&apikey=${API_KEY_Five}`;
+    let API_Call_Five = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${StockSymbolFive}&outputsize=compact&apikey=${API_KEY_Five}`;
     let stockChartXValuesFunctionFive = [];
     let stockChartYValuesFunctionFive = [];
 
@@ -186,7 +187,6 @@ class Stocks extends React.Component {
   render() {
     return (
       <div>
-        <h1>Stock Market</h1>
         <Plot
           data={[
             {
@@ -194,10 +194,10 @@ class Stocks extends React.Component {
               y: this.state.stockChartYValues,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: 'blue'}
             }
           ]}
-          layout={{width: 1080, height: 720, title: 'FaceBook'}}
+          layout={{width: 1900, height: 720, title: 'FaceBook'}}
         />
         <Plot
           data={[
@@ -206,10 +206,10 @@ class Stocks extends React.Component {
               y: this.state.stockChartYValuesTwo,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: 'Coral'},
             }
           ]}
-          layout={{width: 1080, height: 720, title: 'Tesla'}}
+          layout={{width: 1900, height: 720, title: 'Tesla'}}
         />
         <Plot
           data={[
@@ -218,10 +218,10 @@ class Stocks extends React.Component {
               y: this.state.stockChartYValuesThree,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: 'CadetBlue'},
             }
           ]}
-          layout={{width: 1080, height: 720, title: 'Cisco'}}
+          layout={{width: 1900, height: 720, title: 'Cisco'}}
         />
         <Plot
           data={[
@@ -230,10 +230,10 @@ class Stocks extends React.Component {
               y: this.state.stockChartYValuesFour,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: 'Black'},
             }
           ]}
-          layout={{width: 1080, height: 720, title: 'Apple'}}
+          layout={{width: 1900, height: 720, title: 'Apple'}}
         />
         <Plot
           data={[
@@ -242,11 +242,12 @@ class Stocks extends React.Component {
               y: this.state.stockChartYValuesFive,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: 'Crimson'},
             }
           ]}
-          layout={{width: 1080, height: 720, title: 'Intel'}}
+          layout={{width: 1900, height: 720, title: 'Intel'}}
         />
+        
       </div>
     )
   }
